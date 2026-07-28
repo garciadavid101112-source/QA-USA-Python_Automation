@@ -5,7 +5,6 @@ from helpers import retrieve_phone_code
 from pages import UrbanRoutesPage
 from selenium import webdriver
 
-
 class TestUrbanRoutes:
     @classmethod
     def setup_class(cls):
@@ -131,9 +130,6 @@ class TestUrbanRoutes:
         routes_page.click_order_taxi_button()
 
         assert routes_page.get_car_search() == "Car search"
-
-
-
 
     @classmethod
     def teardown_class(cls):
