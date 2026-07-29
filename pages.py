@@ -10,9 +10,10 @@ class UrbanRoutesPage:
     TO_LOCATOR = (By.ID, 'to')
     SUPPORTIVE_PLAN_LOCATOR = (By.XPATH, '//div[text()="Supportive"]/..')
     TAXI_LOCATOR = (By.XPATH, '//button[@class="button round"]')
-    ACTIVE_PLAN_LOCATOR = (By.CSS_SELECTOR, ".tcard.active")
+    ACTIVE_PLAN_LOCATOR = (By.XPATH, "//div[contains(@class, 'tcard')][.//div[text()='Supportive']]")
     PHONE_LOCATOR = (By.XPATH, '//div[text()="Phone number"]')
     ENTER_PHONE_NUMBER_LOCATOR = (By.CSS_SELECTOR, "input#phone.input")
+    SAVED_PHONE_NUMBER_LOCATOR = (By.CSS_SELECTOR, ".np-text")
     NEXT_LOCATOR = (By.CSS_SELECTOR, "button.button.full")
     SMS_LOCATOR = (By.ID, "code")
     CONFIRM_LOCATOR = (By.XPATH, '//button[text()="Confirm"]')
@@ -25,7 +26,7 @@ class UrbanRoutesPage:
     PAYMENT_METHOD_TEXT_LOCATOR = (By.XPATH, '//div[@class="pp-value-text"]')
     COMMENT_LOCATOR = (By.ID, "comment")
     BLANKET_SLIDER_LOCATOR = (By.XPATH, '//div[contains(@class,"r-sw-label") and contains(text(),"Blanket and handkerchiefs")]/following::span[contains(@class,"slider")][1]')
-    BLANKET_CHECKBOX_LOCATOR = (By.XPATH, '//div[contains(@class,"r-sw-label") and contains(text(),"Blanket and handkerchiefs")]/preceding::input[@type="checkbox"][1]')
+    BLANKET_CHECKBOX_LOCATOR = (By.CLASS_NAME, 'switch-input')
     ORDER_REQUIREMENTS_ARROW_LOCATOR = (By.CSS_SELECTOR, "div.reqs-arrow")
     ORDER_REQUIREMENTS_ARROW_OPEN_LOCATOR =(By.CSS_SELECTOR, "div.reqs-arrow open")
     ICE_CREAM_PLUS_LOCATOR = (By.CSS_SELECTOR, ".counter-plus")
@@ -85,7 +86,7 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.CONFIRM_LOCATOR).click()
 
     def get_phone_number(self):
-        return self.driver.find_element(*self.ENTER_PHONE_NUMBER_LOCATOR).get_attribute("value")
+        return self.driver.find_element(*self.PHONE_LOCATOR).text
 
     def get_payment_method(self):
         return self.driver.find_element(*self.ACTIVE_PAYMENT_METHOD_LOCATOR).get_attribute("class")
