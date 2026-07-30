@@ -11,7 +11,8 @@ class UrbanRoutesPage:
     SUPPORTIVE_PLAN_LOCATOR = (By.XPATH, '//div[text()="Supportive"]/..')
     TAXI_LOCATOR = (By.XPATH, '//button[@class="button round"]')
     ACTIVE_PLAN_LOCATOR = (By.XPATH, "//div[contains(@class, 'tcard')][.//div[text()='Supportive']]")
-    PHONE_LOCATOR = (By.XPATH, '//div[text()="Phone number"]')
+    PHONE_BUTTON_LOCATOR = (By.XPATH, '//div[text()="Phone number"]')
+    PHONE_LOCATOR = (By.CLASS_NAME, 'np-text')
     ENTER_PHONE_NUMBER_LOCATOR = (By.CSS_SELECTOR, "input#phone.input")
     SAVED_PHONE_NUMBER_LOCATOR = (By.CSS_SELECTOR, ".np-text")
     NEXT_LOCATOR = (By.CSS_SELECTOR, "button.button.full")
@@ -71,7 +72,7 @@ class UrbanRoutesPage:
         return self.driver.find_element(*self.ACTIVE_PLAN_LOCATOR).get_attribute('class')
 
     def click_phone_number(self):
-        self.driver.find_element(*self.PHONE_LOCATOR).click()
+        self.driver.find_element(*self.PHONE_BUTTON_LOCATOR).click()
 
     def enter_phone_number(self, phone_number):
         self.driver.find_element(*self.ENTER_PHONE_NUMBER_LOCATOR).send_keys(phone_number)
