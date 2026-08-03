@@ -63,7 +63,7 @@ class UrbanRoutesPage:
         self.enter_to_location(to_text)
 
     def click_call_a_taxi(self):
-        self.driver.find_element(*self.TAXI_LOCATOR).click()
+        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.TAXI_LOCATOR)).click()
 
     def click_supportive_plan(self):
         self.driver.find_element(*self.SUPPORTIVE_PLAN_LOCATOR).click()
@@ -100,7 +100,7 @@ class UrbanRoutesPage:
 
     def click_add_card(self):
         WebDriverWait(self.driver, 10).until(
-            expected_conditions.element_to_be_clickable(self.ADD_CARD_LOCATOR)).click()
+                        expected_conditions.element_to_be_clickable(self.ADD_CARD_LOCATOR)).click()
 
     def enter_card_number(self, card_number):
         number = WebDriverWait(self.driver, 10).until(
